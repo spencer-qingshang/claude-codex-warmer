@@ -1,6 +1,10 @@
 # Codex-only deployment
 
-This fork runs only the Codex warm-up from viseshb/claude-codex-warmer.
+This fork includes a Codex-only GitHub workflow and a Windows scheduled-task adapter for viseshb/claude-codex-warmer.
+
+The current deployment uses the Windows adapter because GitHub refused to start Actions jobs with: `The job was not started because your account is locked due to a billing issue.` The cloud workflow is disabled and its authentication secrets have been removed. The settings below describe the prepared cloud workflow, not an active cloud service.
+
+The Windows adapter is in `windows/`. It runs with the signed-in Windows user's permissions every 30 minutes and at logon, follows the Windows system proxy, and stores credentials, logs and state under `%LOCALAPPDATA%/CodexUsageWarmer`. It uses a separately authenticated Codex home and the upstream-pinned CLI version 0.144.1. It sends `hi` only when the usage window is inactive, with a five-hour minimum interval and a five-hour-one-minute fallback. A sleeping or powered-off computer does not execute these checks.
 
 - GitHub Actions checks every 30 minutes, at minutes 07 and 37 (UTC).
 - An active usage window is skipped. The fallback interval is 5 hours 1 minute.
