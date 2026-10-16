@@ -1,5 +1,9 @@
 # claude-codex-warmer
 
+> This fork is configured for **Codex only**. Read [DEPLOYMENT.md](DEPLOYMENT.md)
+> for this deployment's configuration; the original README below describes the
+> upstream project and contains conflicting login advice that does not apply here.
+
 **Keep your Claude Code and Codex usage windows always warm - from a free GitHub
 Actions cron. No laptop, no API keys, no extra billing.**
 
